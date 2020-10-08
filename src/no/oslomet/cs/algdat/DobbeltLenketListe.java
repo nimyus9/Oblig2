@@ -134,7 +134,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(indeksTil(verdi) == -1){
             return false;
         }
-        
+
         return true;
     }
 
