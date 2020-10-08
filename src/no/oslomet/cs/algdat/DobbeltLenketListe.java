@@ -186,7 +186,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             for (int i = 0; i < indeks ; i++) {
                 returnNode = returnNode.neste;
             }
-        }else{ //feil logikk
+        } else{
             returnNode = hale;
             for (int i = 1; i < (antall - indeks); i++) {
                 returnNode = returnNode.forrige;
