@@ -126,7 +126,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi,"Verdi kan ikke vaere Null");
+
+        if(indeks < 0 || indeks > antall) {
+            throw new IndexOutOfBoundsException("Indeks er ute av intervallet");
+        }
+
+        if(verdi == null){
+            throw new NullPointerException("Verdi kan ikke vaere Null");
+        }
+
+        Node<T> node;
+
+        if(antall == 0){
+            node = new Node<>(verdi,null, null);
+            hode = hale = node;
+            antall++;
+            endringer++;
+
+        } else if(tom() || indeks >=antall){
+            leggInn(verdi);
+        } else if(indeks == 0){
+            node = new Node<>(verdi,null, hode);
+            hode.forrige = node;
+            hode = node;
+            antall++;
+            endringer++;
+        } else{
+            Node<T> gammelNode = finnNode(indeks);
+            node = new Node<>(verdi,gammelNode.forrige,gammelNode);
+            gammelNode.forrige = node;
+            node.forrige.neste = node; //
+            antall++;
+            endringer++;
+        }
     }
 
     @Override
